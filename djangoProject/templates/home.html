@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <style>
+        body{
+            margin: 0 0 0 0;
+        }
+        .center {
+            text-align: center;
+            justify-content: center;
+            margin: 0 0 0 0;
+        }
+
+        .myBtn {
+            width: 13rem;
+            height: 13rem;
+            background: transparent;
+            border: 0px;
+        }
+        code{
+            background-color: #00625f;
+            margin-right: 5px;
+            font-family: "Times New Roman";
+            font-weight: bolder;
+            font-size: x-large;
+            color: #fff;
+            padding: 3px 3px 3px 3px;
+            border-radius: 20px;
+            
+        }
+        .contentmy{
+            justify-content: space-around;
+            width: 100%;
+            text-align: center;
+        }
+        span{
+            background-color: #01aba3;
+        }
+        .accblack{
+            color: black;
+            border-color: black;
+            background-color: black;
+        }
+
+    </style>
+
+</head>
+<body>
+<br>
+<br><center>
+<div class="center container">
+    <button type="button" class="btn myBtn" data-bs-toggle="modal" data-bs-target="#modal1">
+        <img src="https://beeline.uz/img/main/logo_footer_light.svg">
+    </button>
+    <div class="modal" id="modal1" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="accordion" id="accordionExample">
+                        {% for bee in bee %}
+                            <div class="accordion-item">
+
+                                <h2 class="accordion-header" id="heading{{ bee.id }}">
+
+
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ bee.id }}" aria-expanded="true"
+                                            aria-controls="collapse{{ bee.id }}">
+                                        {{ bee.titel }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ bee.id }}" class="accordion-collapse collapse show"
+                                     aria-labelledby="heading{{ bee.id }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                               <div class="contentmy table-responsive">
+                                            <table class="contentmy table ">
+                                                  <tr>
+                                                    <td><i class="bi bi-telephone-fill"></i></td>
+                                                    <td>{{ bee.call_p }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><i class="bi bi-envelope-fill"></i></td>
+                                                    <td>{{ bee.sms }}</td>
+                                                  </tr>
+                                                
+                                                
+                                                
+                                                <tr>
+                                                    <td><i class="bi bi-globe2"></i></td>
+                                                    <td>{{ bee.mb }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-info-circle-fill"></i></td>
+                                                    <td>{{ bee.dec }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-tags-fill"></i></td>
+                                                    <td>{{ bee.discount }} 1-OY Uchun </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td><i class="bi bi-currency-dollar"></i></td>
+                                                    <td>{{ bee.realPrice }}</td>
+                                                </tr>
+                                                </table>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>{% endfor %}
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn myBtn " data-bs-toggle="modal" data-bs-target="#modal2">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAb1BMVEX///9qK4NzN4m+osnQvNiXbamFUZrayuB7RZH6+PtrLIKBS5aSZKN2PI3m3Ovu5/HTwdvq4e3h1earibre0OP28/jHr9Dx6/O1lsKkfbO6ncbCqcyngrWHVJtvM4eJWZ6fdq+wj72NX6DMt9WXaqjKmImWAAAEi0lEQVR4nO2aaXeyOhSFDaKMCg6gtQ5Y+/9/46tidhIg2JXWi+uu/XwjORl2xpOE0YgQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhJB3QQhvOtktOuM84SWT7fwl5Y6vBSepXrAvxDFJnYsTNauuOK+OqyLHvPsYPwr+RIhfB8RbtwxFj5KHEFG5Zd2LFCLQA74MCZwylKnjrB0nhYilc32tQAhaEEI+nDKUqbU+BhBydq6vFQhJZQiETJ0yhJB9Ow5CJs71tQIhoQyBEM8pQwj5bsdByMG5vlYgZCZDIEQ4ZYjUX+04CAnbcb8FQtD+fyWkY2RSyA+gEBvOQqJ5kPvB/Mmun9mM3kNIlH8kj6g4+fAtYrJdenxYJav1GwopdjNh4J037cTLSWwYHfJ3E5I3ZNxr0/QLin3cMpoUbyXk3JZxw3SR50mXTai56IML2XfruPpMmpJ5R6fdmCklQwvZ2nToTmtm0XGd9BhdAwsJtErFSZpO9ZkgzxHRQTOaXo00m+o9hETa0F/dDzDFGEZwLVWvJWVRG6kukmqHFfIJaw/7QhYisA7byM1DWwCUkVQ7rBBUJ9aOo2vVSffvlfz80qb/EmMweAMhaoYYp9GJ0doRUhn3IRW66Q2EoK2FcX2ExfZep1zapEZeaAQvGl4IpnrjELYpxzW3D2w0Y9MI8z0YXEgB23HbFmCx3QUGJ4QPLkTN6r6bp7aP1aAaXMgFth3OriR7pkOcBhfy+ZOS5k+FJIMLGf+kpOVTIY3M/gshsaVs0XO+fd4jLxKCVp+1oiLkXPsVJb575sgGRqdJN/vXCFFuYNGMUqOkvoXEVte7asHT8nvL/XMhKZLnzSjVA3UjLvDd2EeK7aOxbw7xwWL0aiFnJG/d5sOHEmUdgM3Z3NkjuQfGt7mzt+b3WiEqedx49JqrrW3RUBYbvhbqdF8vMABnzSVhXm/xxWuERBjTYmrMkkId7OSCpnZEvbUjOPd3N155v6VR0PIxG48vchqVf31dGPVThnZA3ckqY2zF2oRSB8L6YQs+8kx/BFtLfY82+Hshxg522ObzbLHMtyct8Iie2iHMgxK1u9S+xyhDH4fqya6UgXIAYyX5MyF6l3Szg6l+Zq+C6xjZXL5UiNSm3bRM/NuWk5WqXSqprCVEHdschWyslzePhtYm7Vr3bWPvqNvhfS7Sr03E0dPTeHIvVQctmUz5BI5CRkGv5x0az72fdju13S/sTXORNvCSISRCNVyFjPxjd6n3+jV+ihhb7Gb64r20KVGjFBcZ6ukT489ZyGgZWgoWacut8r0uu8TU2333azyByxZRQrC6uwsZRefOTgnLDtts0jZcNTe/aNUer1Pzv4OqKQROwS+E3B49ps2C09Lirq8rQ7a37/onJ1uZ4+twaVr493cg/VU9/z7+Wsit6HKVJveBM5t+n/2WN6xRXPZf4bXNj2G6ym2nkyg4f4fX/OLZoRp3/3+UBXneCul3mwkhhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCHkf8A/CVku5GfzMUMAAAAASUVORK5CYII=">
+    </button>
+    <div class="modal" id="modal2" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="accordion" id="accordionExample">
+                        {% for ucell in ucell %}
+                            <div class="accordion-item">
+
+                                <h2 class="accordion-header" id="heading{{ ucell.id }}">
+
+
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ ucell.id }}" aria-expanded="true"
+                                            aria-controls="collapse{{ ucell.id }}">
+                                        {{ ucell.titel }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ ucell.id }}" class="accordion-collapse collapse show"
+                                     aria-labelledby="heading{{ ucell.id }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                                <div class="contentmy table-responsive">
+                                            <table class="contentmy table ">
+                                                  <tr>
+                                                    <td><i class="bi bi-telephone-fill"></i></td>
+                                                    <td>{{ ucell.call_p }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><i class="bi bi-envelope-fill"></i></td>
+                                                    <td>{{ ucell.sms }}</td>
+                                                  </tr>
+                                                
+                                                
+                                                
+                                                <tr>
+                                                    <td><i class="bi bi-globe2"></i></td>
+                                                    <td>{{ ucell.mb }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-info-circle-fill"></i></td>
+                                                    <td>{{ ucell.dec }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-tags-fill"></i></td>
+                                                    <td>{{ ucell.discount }} 1-OY Uchun </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td><i class="bi bi-currency-dollar"></i></td>
+                                                    <td>{{ ucell.realPrice }}</td>
+                                                </tr>
+                                                </table>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>{% endfor %}
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<br>
+    <button type="button" class="btn  myBtn" data-bs-toggle="modal" data-bs-target="#modal3">
+        <img src="https://mobi.uz/local/templates/main_v2/images/logo.svg">
+    </button>
+            <div class="modal" id="modal3" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="accordion" id="accordionExample">
+                        {% for mobi in mobi %}
+                            <div class="accordion-item">
+
+                                <h2 class="accordion-header" id="heading{{ mobi.id }}">
+
+
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ mobi.id }}" aria-expanded="true"
+                                            aria-controls="collapse{{ mobi.id }}">
+                                        {{ mobi.titel }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ mobi.id }}" class="accordion-collapse collapse show "
+                                     aria-labelledby="heading{{ mobi.id }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body ">
+                                        <div class="contentmy">
+                                            <table class="contentmy table table-responsive">
+                                                  <tr>
+                                                    <td><i class="bi bi-telephone-fill"></i></td>
+                                                    <td>{{ mobi.call_p }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><i class="bi bi-envelope-fill"></i></td>
+                                                    <td>{{ mobi.sms }}</td>
+                                                  </tr>
+                                                
+                                                
+                                                
+                                                <tr>
+                                                    <td><i class="bi bi-globe2"></i></td>
+                                                    <td>{{ mobi.mb }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-info-circle-fill"></i></td>
+                                                    <td>{{ mobi.dec }}</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td><i class="bi bi-tags-fill"></i></td>
+                                                    <td>{{ mobi.discount }} 1-OY Uchun </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td><i class="bi bi-currency-dollar"></i></td>
+                                                    <td>{{ mobi.realPrice }}</td>
+                                                </tr>
+                                                </table>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>{% endfor %}
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    
+
+</footer>
+    </div>
+
+</div>
+    
+
+
+
+</center>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
